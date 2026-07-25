@@ -1,4 +1,4 @@
-import 'package:bongkob_project_v2/ui/screens/decode_screen.dart';
+import 'package:bongkob_project_v2/ui/screens/decode/decode_screen.dart';
 import 'package:bongkob_project_v2/ui/screens/encode/encode_home_screen.dart';
 import 'package:bongkob_project_v2/ui/screens/profile_screen.dart';
 import 'package:bongkob_project_v2/ui/screens/vault_screen.dart';
