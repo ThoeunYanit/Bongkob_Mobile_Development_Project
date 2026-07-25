@@ -19,8 +19,9 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
 
   final service = TextSteganoService();
 
-  bool isSaving = false;
   bool showPassword = false;
+
+  int wordCount = 0; // get word count of cover paragraph
 
   // holds the encoded output — used only for copying, never displayed
   String? successMessage;
@@ -35,9 +36,8 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
   }
 
   // called when user taps Save
-  void handleSave() {
+  void handleSave() async {
     setState(() {
-      isSaving = true;
       successMessage = null;
       errorMessage = null;
     });
@@ -49,7 +49,6 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
     );
 
     setState(() {
-      isSaving = false;
       if (result.success) {
         successMessage = result.encodedText;
       } else {
@@ -77,6 +76,25 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
   void handleDismiss() {
     setState(() => successMessage = null);
   }
+
+  // to get word count of cover paragraph
+  String get getWordCount {
+    final needed_word = service.wordsNeeded(messageController.text.trim());
+    final current = filterExtraSpace(coverController.text);
+
+    return '$current / $needed_word words';
+  }
+
+  Color get getWordCountColor {
+    final needed_word = service.wordsNeeded(messageController.text.trim());
+    final current = filterExtraSpace(coverController.text);
+
+    return current >= needed_word ? AppTheme.green : Colors.red;
+  }
+
+  int filterExtraSpace(String text) {
+    return text.trim().split(' ').where((word) => word.isNotEmpty).length;
+  } //filter extra space // Hello   WOrld => count as 2 // without it => 4 if we only filter ' '
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +153,7 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
             const SizedBox(height: 8),
             TextField(
               controller: messageController,
+              onChanged: (value) => setState(() {}),
               style: const TextStyle(fontSize: 16, color: Colors.black),
               decoration: InputDecoration(
                 hintText: 'Meet me at 9PM riverside.',
@@ -165,6 +184,7 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
             const SizedBox(height: 6),
             TextField(
               controller: coverController,
+              onChanged: (value) => setState(() {}),
               minLines: 1,
               maxLines: null,
               style: const TextStyle(
@@ -192,6 +212,19 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
                 ),
               ),
             ),
+
+            //  ── wordCount ──
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  getWordCount,
+                  style: TextStyle(color: getWordCountColor, fontSize: 11),
+                ),
+              ],
+            ),
+
             const SizedBox(height: 20),
 
             // ── PASSWORD ──
@@ -236,37 +269,28 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
               width: double.infinity,
               height: 52,
               child: ElevatedButton(
-                onPressed: isSaving ? null : handleSave,
+                onPressed: handleSave,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.green,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: isSaving
-                    ? const SizedBox(
-                        width: 22,
-                        height: 22,
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 2,
-                        ),
-                      )
-                    : const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.lock, color: Colors.white, size: 18),
-                          SizedBox(width: 8),
-                          Text(
-                            'SAVE',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                        ],
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.lock, color: Colors.white, size: 18),
+                    SizedBox(width: 8),
+                    Text(
+                      'SAVE',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
                       ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20),

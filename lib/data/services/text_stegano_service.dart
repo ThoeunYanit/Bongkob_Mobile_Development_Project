@@ -49,7 +49,8 @@ class TextSteganoService {
     for (int i = 0; i < words.length; i++) {
       buffer.write(words[i]);
       if (i < bits.length) {
-        buffer.write(bits[i] == 0 ? _bit0 : _bit1);
+        buffer.write(' '); // keep space
+        buffer.write(bits[i] == 0 ? _bit0 : _bit1); // add invisible char
       } else if (i < words.length - 1) {
         buffer.write(' ');
       }
@@ -142,5 +143,17 @@ class TextSteganoService {
       buffer.writeCharCode(byte);
     }
     return buffer.toString();
+  }
+
+  // returns how many word gaps are needed to carry the payload
+  // only depends on message length not password
+  // returns 0 if message is empty
+  int wordsNeeded(String message) {
+    if (message.isEmpty) {
+      return 0;
+    }
+    final encrypted = _crypto.encrypt(message, 'passwordPlaceholder');
+    final payload = _crypto.header + encrypted;
+    return _toBits(payload).length + 1; // word = gap+ 1 // Hello[0]World.
   }
 }
