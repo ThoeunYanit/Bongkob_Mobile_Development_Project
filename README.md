@@ -46,6 +46,7 @@ A mobile steganography app that protects sensitive information by hiding secret 
 ---
 
 ## Architecture
+```bash
 lib/
 ├── main.dart
 ├── theme/
@@ -76,6 +77,7 @@ lib/
 └── widgets/
 ├── error_box.dart
 └── success_box.dart
+```
 
 ---
 
