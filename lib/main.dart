@@ -1,6 +1,8 @@
 import 'package:bongkob_project_v2/ui/screens/biometric/biometric_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'ui/screens/main_screen.dart';
+
 
 void main() {
   runApp(const BongkobApp());
@@ -14,8 +16,8 @@ class BongkobApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // app starts on the fingerprint scan screen, not the main tabs
-      home: BiometricScreen(),
-      // home: MainScreen() // to skip Biometric
+      // home: BiometricScreen(),
+      home: MainScreen() // to skip Biometric
     );
   }
 }
