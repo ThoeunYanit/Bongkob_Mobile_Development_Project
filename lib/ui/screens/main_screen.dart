@@ -1,7 +1,7 @@
 import 'package:bongkob_project_v2/ui/screens/decode/decode_screen.dart';
 import 'package:bongkob_project_v2/ui/screens/encode/encode_home_screen.dart';
-import 'package:bongkob_project_v2/ui/screens/profile_screen.dart';
-import 'package:bongkob_project_v2/ui/screens/vault_screen.dart';
+import 'package:bongkob_project_v2/ui/screens/profile/profile_screen.dart';
+import 'package:bongkob_project_v2/ui/screens/vault/vault_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';

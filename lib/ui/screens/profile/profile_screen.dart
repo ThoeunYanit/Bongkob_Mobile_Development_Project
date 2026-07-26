@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../data/services/session_service.dart';
-import '../../../theme/app_theme.dart';
+import '../../../../data/services/session_service.dart';
+import '../../../../theme/app_theme.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

@@ -102,9 +102,9 @@
 // }
 
 import 'package:flutter/material.dart';
-import '../../data/services/biometric_service.dart';
-import '../../theme/app_theme.dart';
-import 'main_screen.dart';
+import '../../../data/services/biometric_service.dart';
+import '../../../theme/app_theme.dart';
+import '../main_screen.dart';
 
 class BiometricScreen extends StatefulWidget {
   const BiometricScreen({super.key});
