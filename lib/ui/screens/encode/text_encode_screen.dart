@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../data/services/session_service.dart';
 import '../../../data/services/text_stegano_service.dart';
 import '../../../theme/app_theme.dart';
 import '../../widgets/success_box.dart';
 import '../../widgets/error_box.dart';
+
 
 class TextEncodeScreen extends StatefulWidget {
   const TextEncodeScreen({super.key});
@@ -18,6 +20,7 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
   final passwordController = TextEditingController();
 
   final service = TextSteganoService();
+ 
 
   bool showPassword = false;
 
@@ -47,6 +50,10 @@ class _TextEncodeScreenState extends State<TextEncodeScreen> {
       coverText: coverController.text.trim(),
       password: passwordController.text,
     );
+
+    // log session after encode
+    SessionService.instance.add('encode', result.success ? 'success' : 'failed');
+
 
     setState(() {
       if (result.success) {

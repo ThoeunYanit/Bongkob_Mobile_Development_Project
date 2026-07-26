@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(const BongkobApp());
 }
 
@@ -16,6 +15,7 @@ class BongkobApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // app starts on the fingerprint scan screen, not the main tabs
       home: BiometricScreen(),
+      // home: MainScreen() // to skip Biometric
     );
   }
 }
