@@ -122,7 +122,7 @@ To test biometric on emulator:
 **Input:** valid message, cover text, and password  
 **Expected:** encoding complete, copy button appears
 
-![Encode success](screenshots/encode_success.png)
+![Encode success](screenshots/encode_success.jpg)
 
 ---
 
@@ -130,7 +130,7 @@ To test biometric on emulator:
 **Input:** no message entered  
 **Expected:** "Message cannot be empty"
 
-![Encode empty message](screenshots/encode_empty_message.png)
+![Encode empty message](screenshots/encode_empty_message.jpg)
 
 ---
 
@@ -138,7 +138,7 @@ To test biometric on emulator:
 **Input:** no cover text entered  
 **Expected:** "Cover text cannot be empty"
 
-![Encode empty cover](screenshots/encode_empty_cover.png)
+![Encode empty cover](screenshots/encode_empty_cover.jpg)
 
 ---
 
@@ -146,7 +146,7 @@ To test biometric on emulator:
 **Input:** no password entered  
 **Expected:** "Password cannot be empty"
 
-![Encode empty password](screenshots/encode_empty_password.png)
+![Encode empty password](screenshots/encode_empty_password.jpg)
 
 ---
 
@@ -154,7 +154,7 @@ To test biometric on emulator:
 **Input:** encoded text + correct password  
 **Expected:** original message revealed
 
-![Decode success](screenshots/decode_success.png)
+![Decode success](screenshots/decode_success.jpg)
 
 ---
 
@@ -162,7 +162,7 @@ To test biometric on emulator:
 **Input:** encoded text + wrong password  
 **Expected:** "Incorrect password"
 
-![Decode wrong password](screenshots/decode_wrong_password.png)
+![Decode wrong password](screenshots/decode_wrong_password.jpg)
 
 ---
 
@@ -170,5 +170,5 @@ To test biometric on emulator:
 **Input:** plain text with no hidden data  
 **Expected:** "No hidden data found in this text"
 
-![Decode plain text](screenshots/decode_plain_text.png)
+![Decode plain text](screenshots/decode_plain_text.jpg)
 
